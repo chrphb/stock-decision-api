@@ -15,7 +15,7 @@ describe('controllers', function() {
         let data = {};
         data.stocks = stocks;
         request(server)
-          .post('/decide')
+          .post('/api/v1/decide')
           .send(data)
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
@@ -36,7 +36,7 @@ describe('controllers', function() {
         let data = {};
         data.stocks = stocks;
         request(server)
-          .post('/decide')
+          .post('/api/v1/decide')
           .send(data)
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
@@ -56,7 +56,7 @@ describe('controllers', function() {
         let data = {};
         data.stocks = stocks;
         request(server)
-          .post('/decide')
+          .post('/api/v1/decide')
           .send(data)
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
@@ -76,7 +76,7 @@ describe('controllers', function() {
         let data = {};
         data.stocks = stocks;
         request(server)
-          .post('/decide')
+          .post('/api/v1/decide')
           .send(data)
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
@@ -96,7 +96,7 @@ describe('controllers', function() {
         let data = {};
         data.stocks = stocks;
         request(server)
-          .post('/decide')
+          .post('/api/v1/decide')
           .send(data)
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
