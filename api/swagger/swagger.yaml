@@ -1,0 +1,91 @@
+swagger: "2.0"
+info:
+  version: "1.0.1"
+  title: Stock Market Decision App
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /decide:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: decide
+    post:
+      description: Decide market action based on stock data
+      # used as the method name of the controller
+      operationId: decide
+      parameters:
+        - name: stocksRequest
+          in: body
+          description: The array of stocks to decide about
+          required: true
+          schema:
+            properties:
+              stocks:
+                type: array
+                items: 
+                  $ref: "#/definitions/StockRequest"
+      responses:
+        "200":
+          description: Success
+          schema:
+            properties:
+              decisions:
+                type: array
+                items:
+                  # a pointer to a definition
+                  $ref: "#/definitions/DecideResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  DecideResponse:
+    required:
+      - ticker
+      - decision
+    properties:
+      ticker:
+        type: string
+      decision:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  StockRequest:
+    type: object
+    properties:
+      ticker:
+        type: string
+      cur: 
+        type: string
+      value:
+        type: number
+      price:
+        type: number
+      dailyaverageeuro:
+        type: number
+    required:
+      - ticker
+      - cur
+      - value
+      - price
+      - dailyaverageeuro
