@@ -31,7 +31,6 @@ module.exports = {
 
 const decideOn = R.cond([
   [stock => R.equals("USD",stock.cur),    R.always("ignore")],
-  [stock => R.equals("GBP",stock.cur),    R.always("ignore")],
   [stock => R.equals("CHF",stock.cur),    R.always("ignore")],
   [stock => R.equals("CAD",stock.cur),    R.always("ignore")],
   [stock => stock.dailyaverageeuro<10000, R.always("ignore")],  
